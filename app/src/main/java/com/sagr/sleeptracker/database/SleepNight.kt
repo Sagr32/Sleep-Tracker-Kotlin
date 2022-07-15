@@ -15,3 +15,23 @@
  */
 
 package com.sagr.sleeptracker.database
+
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "sleep_quality_table")
+data class SleepNight(
+
+    @PrimaryKey(autoGenerate = true)
+    var nightId: Long = 0L,
+
+    @ColumnInfo(name = "startTimeMilli")
+    val startTimeMilli: Long = System.currentTimeMillis(),
+
+    @ColumnInfo(name = "endTimeMilli")
+    var endTimeMilli: Long = startTimeMilli,
+
+    @ColumnInfo(name = "sleepQuality")
+    var sleepQuality: Int = -1
+)
