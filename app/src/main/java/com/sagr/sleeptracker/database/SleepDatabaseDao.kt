@@ -16,4 +16,32 @@
 
 package com.sagr.sleeptracker.database
 
-interface SleepDatabaseDao
+import androidx.lifecycle.LiveData
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
+
+@Dao
+interface SleepDatabaseDao{
+
+    @Insert
+    fun insert (night:SleepNight)
+
+    @Update
+    fun update(night: SleepNight)
+
+    @Query("SELECT * FROM sleep_quality_table WHERE nightId = :key")
+    fun getNightById(key:Long):SleepNight
+
+    @Query("DELETE FROM sleep_quality_table")
+    fun clearAll()
+
+    @Query("SELECT * FROM sleep_quality_table ORDER BY nightId DESC")
+    fun getAllNights():LiveData<List<SleepNight>>
+
+    @Query("SELECT * FROM sleep_quality_table ORDER BY nightId DESC LIMIT 1")
+    fun getTonight():SleepNight?
+
+
+}
