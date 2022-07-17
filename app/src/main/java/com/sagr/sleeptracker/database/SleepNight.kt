@@ -27,7 +27,7 @@ data class SleepNight(
     var nightId: Long = 0L,
 
     @ColumnInfo(name = "startTimeMilli")
-    val startTimeMilli: Long = System.currentTimeMillis(),
+    var startTimeMilli: Long = System.currentTimeMillis(),
 
     @ColumnInfo(name = "endTimeMilli")
     var endTimeMilli: Long = startTimeMilli,
