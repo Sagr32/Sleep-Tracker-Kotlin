@@ -19,6 +19,7 @@ package com.sagr.sleeptracker.sleeptracker
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.sagr.sleeptracker.database.SleepDatabaseDao
@@ -33,6 +34,12 @@ class SleepTrackerViewModel(
     val database: SleepDatabaseDao,
     application: Application
 ) : AndroidViewModel(application) {
+
+    var _navigateToSleepQuality = MutableLiveData<SleepNight>()
+
+
+    val navigateToSleepQuality: LiveData<SleepNight>
+        get() = _navigateToSleepQuality
 
 
     private var viewModelJob = Job()
@@ -84,6 +91,7 @@ class SleepTrackerViewModel(
 
             update(oldNight)
 
+            _navigateToSleepQuality.value = oldNight
         }
     }
 
@@ -122,6 +130,10 @@ class SleepTrackerViewModel(
 
     }
 
+
+    fun onDoneNavigation() {
+        _navigateToSleepQuality.value = null
+    }
 
     override fun onCleared() {
         super.onCleared()
