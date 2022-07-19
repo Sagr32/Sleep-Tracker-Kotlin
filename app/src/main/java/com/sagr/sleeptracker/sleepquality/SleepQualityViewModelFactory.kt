@@ -15,3 +15,20 @@
  */
 
 package com.sagr.sleeptracker.sleepquality
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.sagr.sleeptracker.database.SleepDatabaseDao
+
+@Suppress("UNCHECKED_CAST")
+class SleepQualityViewModelFactory(
+    private val sleepNightId: Long = 0L,
+    val database: SleepDatabaseDao
+) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(SleepQualityViewModel::class.java)) {
+            return SleepQualityViewModel(sleepNightId, database) as T
+        }
+        throw IllegalArgumentException("ViewModel not found")
+    }
+}

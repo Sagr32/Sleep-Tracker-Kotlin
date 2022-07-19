@@ -15,3 +15,50 @@
  */
 
 package com.sagr.sleeptracker.sleepquality
+
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.sagr.sleeptracker.database.SleepDatabaseDao
+import com.sagr.sleeptracker.database.SleepNight
+import kotlinx.coroutines.*
+
+class SleepQualityViewModel(
+    private val sleepNightId: Long = 0L,
+    val database: SleepDatabaseDao
+) : ViewModel() {
+
+
+    var _navigateToSleepTracker = MutableLiveData<Boolean>()
+
+    val navigateToSleepTracker: LiveData<Boolean>
+        get() = _navigateToSleepTracker
+
+
+    private var viewModelJob = Job()
+
+    fun onSetQuality(qualityNum: Int) {
+
+        viewModelScope.launch(Dispatchers.IO) {
+            val night = database.getNightById(sleepNightId)
+
+            night.sleepQuality = qualityNum
+
+            database.update(night)
+
+        }
+        _navigateToSleepTracker.value = true
+    }
+
+
+    fun onDoneNavigation() {
+        _navigateToSleepTracker.value = false
+    }
+
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
+}
