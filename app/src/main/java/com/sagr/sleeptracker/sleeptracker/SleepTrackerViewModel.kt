@@ -135,6 +135,19 @@ class SleepTrackerViewModel(
         _navigateToSleepQuality.value = null
     }
 
+
+    var startButtonEnabled = Transformations.map(tonight) {
+        it == null
+    }
+
+    var stopButtonEnabled = Transformations.map(tonight) {
+        null != it
+    }
+
+    var clearButtonEnabled = Transformations.map(allNights) {
+        it.isNotEmpty()
+    }
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()

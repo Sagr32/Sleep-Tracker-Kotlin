@@ -16,10 +16,7 @@
 
 package com.sagr.sleeptracker.sleepquality
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.sagr.sleeptracker.database.SleepDatabaseDao
 import com.sagr.sleeptracker.database.SleepNight
 import kotlinx.coroutines.*
@@ -30,7 +27,8 @@ class SleepQualityViewModel(
 ) : ViewModel() {
 
 
-    var _navigateToSleepTracker = MutableLiveData<Boolean>()
+
+    private var _navigateToSleepTracker = MutableLiveData<Boolean>()
 
     val navigateToSleepTracker: LiveData<Boolean>
         get() = _navigateToSleepTracker
@@ -55,6 +53,8 @@ class SleepQualityViewModel(
     fun onDoneNavigation() {
         _navigateToSleepTracker.value = false
     }
+
+
 
 
     override fun onCleared() {
