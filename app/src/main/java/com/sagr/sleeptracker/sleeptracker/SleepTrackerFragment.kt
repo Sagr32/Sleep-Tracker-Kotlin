@@ -78,7 +78,14 @@ class SleepTrackerFragment : Fragment() {
                 sleepTrackerViewModel.onDoneNavigation()
             }
         }
+        val adapter = SleepTrackerAdapter()
+        binding.sleepList.adapter = adapter
 
+        sleepTrackerViewModel.allNights.observe(viewLifecycleOwner) {
+            it?.let {
+                adapter.data = it
+            }
+        }
 
         return binding.root
     }

@@ -48,7 +48,7 @@ class SleepTrackerViewModel(
 
     private var tonight = MutableLiveData<SleepNight?>()
 
-    private var allNights = database.getAllNights()
+     var allNights = database.getAllNights()
 
     /**
      * Converted nights to Spanned for displaying.
