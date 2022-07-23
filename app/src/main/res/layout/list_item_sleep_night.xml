@@ -20,11 +20,11 @@
         android:onClick="@{()->sleepListener.onClick(sleepNight)}">
 
         <ImageView
+
             android:id="@+id/quality_image"
             android:layout_width="@dimen/icon_size"
             android:layout_height="@dimen/icon_size"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_margin="16dp"
             android:contentDescription="@string/quality_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -32,32 +32,15 @@
             app:srcCompat="@drawable/ic_sleep_5" />
 
         <TextView
-            android:id="@+id/sleep_length"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.504"
-            app:layout_constraintStart_toEndOf="@+id/quality_image"
-            app:layout_constraintTop_toTopOf="parent"
-            app:textDurationFormatted="@{sleepNight}"
-            tools:text="" />
-
-        <TextView
             android:id="@+id/quality_string"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text=""
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sleep_length"
+            app:layout_constraintEnd_toEndOf="@+id/quality_image"
+            app:layout_constraintStart_toStartOf="@+id/quality_image"
+            app:layout_constraintTop_toBottomOf="@+id/quality_image"
             app:qualityToString="@{sleepNight}" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

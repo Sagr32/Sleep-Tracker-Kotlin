@@ -27,6 +27,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.sagr.sleeptracker.R
 import com.sagr.sleeptracker.database.SleepDatabase
 import com.sagr.sleeptracker.databinding.FragmentSleepTrackerBinding
@@ -79,6 +81,8 @@ class SleepTrackerFragment : Fragment() {
                 sleepTrackerViewModel.onDoneNavigation()
             }
         }
+        val manager = GridLayoutManager(activity, 3)
+        binding.sleepList.layoutManager = manager
         val adapter = SleepTrackerAdapter(SleepNightListener { nightId ->
             Toast.makeText(context, "$nightId", Toast.LENGTH_LONG).show()
         })
