@@ -32,7 +32,7 @@ interface SleepDatabaseDao{
     fun update(night: SleepNight)
 
     @Query("SELECT * FROM sleep_quality_table WHERE nightId = :key")
-    fun getNightById(key:Long):SleepNight
+    fun getNightById(key:Long): SleepNight
 
     @Query("DELETE FROM sleep_quality_table")
     fun clearAll()

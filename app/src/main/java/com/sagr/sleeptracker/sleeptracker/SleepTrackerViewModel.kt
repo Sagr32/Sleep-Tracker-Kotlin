@@ -17,7 +17,6 @@
 package com.sagr.sleeptracker.sleeptracker
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -35,7 +34,7 @@ class SleepTrackerViewModel(
     application: Application
 ) : AndroidViewModel(application) {
 
-    var _navigateToSleepQuality = MutableLiveData<SleepNight>()
+    private var _navigateToSleepQuality = MutableLiveData<SleepNight>()
 
 
     val navigateToSleepQuality: LiveData<SleepNight>
@@ -48,7 +47,7 @@ class SleepTrackerViewModel(
 
     private var tonight = MutableLiveData<SleepNight?>()
 
-     var allNights = database.getAllNights()
+    var allNights = database.getAllNights()
 
     /**
      * Converted nights to Spanned for displaying.
@@ -146,6 +145,19 @@ class SleepTrackerViewModel(
 
     var clearButtonEnabled = Transformations.map(allNights) {
         it.isNotEmpty()
+    }
+
+    private val _navigateToSleepDetail = MutableLiveData<Long>()
+    val navigateToSleepDetail
+        get() = _navigateToSleepDetail
+
+    // Handling navigating to [SleepDetailFragment]
+    fun onSleepNightClicked(id: Long) {
+        _navigateToSleepDetail.value = id
+    }
+
+    fun onNavigateToSleepDetail() {
+        _navigateToSleepDetail.value = null
     }
 
     override fun onCleared() {

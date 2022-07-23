@@ -27,7 +27,6 @@ class SleepQualityViewModel(
 ) : ViewModel() {
 
 
-
     private var _navigateToSleepTracker = MutableLiveData<Boolean>()
 
     val navigateToSleepTracker: LiveData<Boolean>
@@ -53,8 +52,6 @@ class SleepQualityViewModel(
     fun onDoneNavigation() {
         _navigateToSleepTracker.value = false
     }
-
-
 
 
     override fun onCleared() {
