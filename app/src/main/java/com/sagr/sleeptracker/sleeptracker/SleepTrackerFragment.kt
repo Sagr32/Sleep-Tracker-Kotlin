@@ -101,7 +101,7 @@ class SleepTrackerFragment : Fragment() {
 
         sleepTrackerViewModel.allNights.observe(viewLifecycleOwner) {
             it?.let {
-                adapter.submitList(it)
+                adapter.addHeaderAndSubmitList(it)
             }
         }
 
